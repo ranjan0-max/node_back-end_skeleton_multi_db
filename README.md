@@ -51,6 +51,14 @@ Request flow: `route -> validator -> middleware (auth, role) -> controller -> se
 - `POST /api/v1/auth/logout` -> clears session, its access + refresh tokens stop working
 - deactivated user (`is_active = false`) is blocked on the next request (`userInactive`)
 
+## Menus (dynamic sidebar)
+
+- `public.menus`: master list, `parent_id` NULL = group / top level, `key` = unique code for frontend
+- `public.client_menus`: menus given to a client by super admin, every user of that client sees them
+- super admin: `GET|POST /api/v1/menus`, `GET|PUT|DELETE /api/v1/menus/:id`
+- super admin: `GET|PUT /api/v1/clients/:id/menus` (body `{ menuIds: [] }` replaces full list, parents added automatically)
+- every user: `GET /api/v1/menus/my` -> active menus as tree (`children`), super admin gets all
+
 ## Migrations
 
 Run automatically on server start / `pm2 restart` when `RUN_MIGRATIONS_ON_START=true`.

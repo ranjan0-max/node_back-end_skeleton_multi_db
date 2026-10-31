@@ -56,6 +56,6 @@ app.setNotFoundHandler((request, reply) =>
 );
 
 //? routes
-app.register(require("./Routes"), { prefix: "/api/v1" });
+app.register(require("./Routes"));
 
 module.exports = app;

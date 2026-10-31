@@ -21,6 +21,7 @@ module.exports = (sequelize) => {
 
   Client.associate = (models) => {
     Client.hasMany(models.User, { foreignKey: "clientId", as: "users" });
+    Client.hasMany(models.ClientMenu, { foreignKey: "clientId", as: "clientMenus" });
   };
 
   return Client;
